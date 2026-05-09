@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import HomeScreen from "../Screens/HomeScreen";
 import CultureScreen from "../Screens/CultureScreen";
+import MusicScreen from "../Screens/MusicScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,11 @@ export default function AppNavigator() {
       <Stack.Screen
         name="Culture"
         component={CultureScreen}
+      />
+
+      <Stack.Screen 
+        name="Music"
+        component={MusicScreen} 
       />
     </Stack.Navigator>
   );

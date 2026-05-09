@@ -1,7 +1,9 @@
 import React from "react";
 import HistorySection from "../components/HistorySection";
+import ColonialContextSection from "../components/ColonialContextSection";
 import FoodCarousel from "../components/FoodCarousel";
 import QuoteSection from "../components/QuoteSection";
+import MusicPreview from "../components/MusicPreview";
 import CulturePreview from "../components/CulturePreview";
 import FamousPeople from "../components/FamousPeople";
 import Footer from "../components/Footer";
@@ -27,8 +29,10 @@ export default function HomeScreen() {
       >
         <HeroSection />
         <HistorySection />
+        <ColonialContextSection />
         <FoodCarousel />
         <QuoteSection />
+        <MusicPreview />
         <CulturePreview />
         <FamousPeople />
         <Footer />
