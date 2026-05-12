@@ -9,6 +9,7 @@ import {
 } from "react-native";
 
 import { LinearGradient } from "expo-linear-gradient";
+import AudioCard from "../components/AudioCard";
 
 import colors from "../styles/Colors";
 import typography from "../styles/Typography";
@@ -32,16 +33,16 @@ export default function MusicScreen() {
             Salsa is one of Puerto Rico’s most iconic genres, mixing Afro-Caribbean rhythms.
           </Text>
 
-          <Text style={styles.artist}>Recommended: Willie Colón, Héctor Lavoe</Text>
+          <Text style={styles.artist}>
+            Recommended: Willie Colón, Héctor Lavoe
+          </Text>
 
-          <View style={styles.quoteBox}>
-            <Text style={styles.quote}>
-              “Que no tiene certeza y nunca te da{"\n"}
-              Que no tiene concepto, y nunca tendrá”
-            </Text>
-            <Text style={styles.subtitle}>
-              Willie Colón - Oh, qué será?
-            </Text>
+          <View>
+            <AudioCard
+              id="salsa"   // 🔥 AQUÍ
+              title="Un Verano En Nueva York"
+              file={require("../assets/Audio/salsa.mp3")}
+            />
           </View>
         </LinearGradient>
       </ImageBackground>
@@ -61,17 +62,16 @@ export default function MusicScreen() {
             Born in the streets of Puerto Rico, reggaeton became a global movement.
           </Text>
 
-          <Text style={styles.artist}>Recommended: Bad Bunny, Daddy Yankee, Ivy Queen</Text>
+          <Text style={styles.artist}>
+            Recommended: Bad Bunny, Daddy Yankee, Ivy Queen
+          </Text>
 
-          <View style={styles.quoteBox}>
-            <Text style={styles.quote}>
-              “Salimo de la calle y del ghetto, y el respeto lo implantamo{"\n"}
-              En la disco están volando las paca'{"\n"}
-              Y al que no le guste, lo sacamo (tú sabe)”
-            </Text>
-            <Text style={styles.subtitle}>
-              Tito el Bambino - La Gerencia
-            </Text>
+          <View>
+            <AudioCard
+              id="reggaeton"  // 🔥 AQUÍ
+              title="Gasolina"
+              file={require("../assets/Audio/reggaeton.mp3")}
+            />
           </View>
         </LinearGradient>
       </ImageBackground>
@@ -91,16 +91,16 @@ export default function MusicScreen() {
             Traditional Puerto Rican folk music that represents rural life and identity.
           </Text>
 
-          <Text style={styles.artist}>Recommended: Rafael Cepeda</Text>
+          <Text style={styles.artist}>
+            Recommended: Rafael Cepeda
+          </Text>
 
-          <View style={styles.quoteBox}>
-            <Text style={styles.quote}>
-              Se oye al jíbaro llorando, otro má que se marchó {"\n"}
-              No quería irse pa Orlando, pero el corrupto lo echó
-            </Text>
-            <Text style={styles.subtitle}>
-              Bad Bunny - LO QUE LE PASÓ A HAWAii
-            </Text>
+          <View>
+            <AudioCard
+              id="jibara"  // 🔥 AQUÍ
+              title="Lo que le pasó a Hawaii"
+              file={require("../assets/Audio/jibara.mp3")}
+            />
           </View>
         </LinearGradient>
       </ImageBackground>
@@ -132,12 +132,6 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
 
-  subtitle: {
-    ...typography.heroSubtitle,
-    color: colors.gold,
-    textTransform: "uppercase",
-  },
-
   text: {
     ...typography.body,
     color: colors.white,
@@ -148,19 +142,5 @@ const styles = StyleSheet.create({
     ...typography.smallText,
     color: colors.gold,
     marginBottom: 20,
-  },
-
-  quoteBox: {
-    backgroundColor: "rgba(255,255,255,0.08)",
-    padding: 16,
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.2)",
-  },
-
-  quote: {
-    ...typography.lightBody,
-    color: colors.white,
-    fontStyle: "italic",
   },
 });
