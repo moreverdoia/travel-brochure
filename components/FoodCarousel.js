@@ -5,7 +5,7 @@ import {
   Text,
   StyleSheet,
   ScrollView,
-  TouchableOpacity,
+  Pressable,
   Image,
   Modal,
 } from "react-native";
@@ -32,11 +32,13 @@ export default function FoodCarousel() {
         contentContainerStyle={styles.scrollContent}
       >
         {foods.map((food) => (
-          <TouchableOpacity
+          <Pressable
             key={food.id}
-            activeOpacity={0.85}
-            style={styles.card}
             onPress={() => setSelectedFood(food)}
+            style={({ pressed }) => [
+              styles.card,
+              pressed && { opacity: 0.85 },
+            ]}
           >
             <Image
               source={food.image}
@@ -48,7 +50,7 @@ export default function FoodCarousel() {
                 {food.name}
               </Text>
             </View>
-          </TouchableOpacity>
+          </Pressable>
         ))}
       </ScrollView>
 
@@ -92,14 +94,14 @@ export default function FoodCarousel() {
                   {selectedFood.advice}
                 </Text>
 
-                <TouchableOpacity
+                <Pressable
                   style={styles.closeButton}
                   onPress={() => setSelectedFood(null)}
                 >
                   <Text style={styles.closeText}>
                     CLOSE
                   </Text>
-                </TouchableOpacity>
+                </Pressable>
               </>
             )}
           </View>

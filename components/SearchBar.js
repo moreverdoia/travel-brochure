@@ -4,7 +4,7 @@ import {
   View,
   TextInput,
   StyleSheet,
-  TouchableOpacity,
+  Pressable,
   Text,
   Keyboard,
   Animated,
@@ -84,7 +84,6 @@ export default function SearchBar({ onSearch, floating }) {
         },
       ]}
     >
-
       <TextInput
         value={text}
         onChangeText={handleChange}
@@ -102,7 +101,7 @@ export default function SearchBar({ onSearch, floating }) {
       {suggestions.length > 0 && (
         <View style={styles.suggestions}>
           {suggestions.map((item) => (
-            <TouchableOpacity
+            <Pressable
               key={item}
               onPress={() => handleSelect(item)}
               style={styles.suggestionItem}
@@ -110,11 +109,10 @@ export default function SearchBar({ onSearch, floating }) {
               <Text style={styles.suggestionText}>
                 {item}
               </Text>
-            </TouchableOpacity>
+            </Pressable>
           ))}
         </View>
       )}
-
     </Animated.View>
   );
 }

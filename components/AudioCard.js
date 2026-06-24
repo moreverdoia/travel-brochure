@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import {
   View,
   Text,
-  TouchableOpacity,
+  Pressable,
   StyleSheet,
   PanResponder,
 } from "react-native";
@@ -85,38 +85,37 @@ export default function AudioCard({ title, file, id }) {
 
   // ▶ PLAY / PAUSE
   const toggle = async () => {
-  if (!sound) return;
+    if (!sound) return;
 
-  try {
-    const activeId = getCurrentId();
+    try {
+      const activeId = getCurrentId();
 
-    // 🔥 si hay otro audio activo
-    if (activeId && activeId !== id) {
-      await stopCurrentSound();
+      // 🔥 si hay otro audio activo
+      if (activeId && activeId !== id) {
+        await stopCurrentSound();
+      }
+
+      // 🔥 PAUSAR
+      if (isPlaying) {
+        await sound.pauseAsync();
+
+        setIsPlaying(false);
+
+        return;
+      }
+
+      // 🔥 reproducir desde donde quedó
+      await sound.playAsync();
+
+      setCurrentSound(sound, id);
+
+      setIsPlaying(true);
+
+      setHasPlayed(true);
+    } catch (e) {
+      console.log("Audio error:", e);
     }
-
-    // 🔥 PAUSAR
-    if (isPlaying) {
-      await sound.pauseAsync();
-
-      setIsPlaying(false);
-
-      return;
-    }
-
-    // 🔥 reproducir desde donde quedó
-    await sound.playAsync();
-
-    setCurrentSound(sound, id);
-
-    setIsPlaying(true);
-
-    setHasPlayed(true);
-
-  } catch (e) {
-    console.log("Audio error:", e);
-  }
-};
+  };
 
   // 🎯 label
   const getLabel = () => {
@@ -151,13 +150,12 @@ export default function AudioCard({ title, file, id }) {
 
   return (
     <View style={styles.card}>
-
       <Text style={styles.title}>{title}</Text>
 
       {/* BUTTON */}
-      <TouchableOpacity onPress={toggle} style={styles.button}>
+      <Pressable onPress={toggle} style={styles.button}>
         <Text style={styles.text}>{getLabel()}</Text>
-      </TouchableOpacity>
+      </Pressable>
 
       {/* VISUALIZER */}
       <AudioVisualizer isPlaying={isPlaying} />
@@ -185,7 +183,6 @@ export default function AudioCard({ title, file, id }) {
           ]}
         />
       </View>
-
     </View>
   );
 }

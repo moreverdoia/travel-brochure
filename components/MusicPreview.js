@@ -4,7 +4,7 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
+  Pressable,
 } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
@@ -25,14 +25,14 @@ export default function MusicPreview() {
         Explore the rhythm of Puerto Rico through salsa, reggaeton and jíbara music.
       </Text>
 
-      <TouchableOpacity
+      <Pressable
         style={styles.button}
         onPress={() => navigation.navigate("Music")}
       >
         <Text style={styles.buttonText}>
           EXPLORE MUSIC →
         </Text>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 }

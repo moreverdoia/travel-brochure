@@ -5,7 +5,7 @@ import {
   StyleSheet,
   View,
   StatusBar,
-  TouchableOpacity,
+  Pressable,
   Text,
 } from "react-native";
 
@@ -97,7 +97,6 @@ export default function HomeScreen() {
           }
         }}
       >
-
         <HeroSection />
 
         {/* 🔥 SEARCH NORMAL */}
@@ -141,32 +140,29 @@ export default function HomeScreen() {
         </View>
 
         <Footer />
-
       </ScrollView>
 
       {/* 🔥 FLOATING SEARCH */}
       {showFloatingSearch && (
         <View style={styles.floatingContainer}>
-
           {expanded ? (
-            <SearchBar style={styles.searchBarFloating}
+            <SearchBar
+              style={styles.searchBarFloating}
               onSearch={handleSearch}
               floating
             />
           ) : (
-            <TouchableOpacity
+            <Pressable
               style={styles.searchButton}
               onPress={() => setExpanded(true)}
             >
               <Text style={styles.searchIcon}>
                 🔍
               </Text>
-            </TouchableOpacity>
+            </Pressable>
           )}
-
         </View>
       )}
-
     </View>
   );
 }

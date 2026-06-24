@@ -5,7 +5,7 @@ import {
   Text,
   StyleSheet,
   ImageBackground,
-  TouchableOpacity,
+  Pressable,
 } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
@@ -48,15 +48,17 @@ export default function CulturePreview() {
               try traditional food and respect cultural traditions.
             </Text>
 
-            <TouchableOpacity
-              activeOpacity={0.8}
-              style={styles.button}
+            <Pressable
               onPress={() => navigation.navigate("Culture")}
+              style={({ pressed }) => [
+                styles.button,
+                pressed && { opacity: 0.8 },
+              ]}
             >
               <Text style={styles.buttonText}>
                 EXPLORE CULTURE →
               </Text>
-            </TouchableOpacity>
+            </Pressable>
           </View>
         </LinearGradient>
       </ImageBackground>

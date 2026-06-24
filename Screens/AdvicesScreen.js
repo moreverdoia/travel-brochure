@@ -4,7 +4,7 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
+  Pressable,
   Modal,
   ScrollView,
 } from "react-native";
@@ -109,7 +109,6 @@ export default function AdvicesScreen() {
 
   return (
     <ScrollView style={styles.container}>
-
       <Text style={styles.title}>
         LOCAL ADVICES
       </Text>
@@ -120,12 +119,11 @@ export default function AdvicesScreen() {
 
       <View style={styles.grid}>
         {sections.map((section) => (
-          <TouchableOpacity
+          <Pressable
             key={section.title}
             style={styles.card}
             onPress={() => setSelected(section)}
           >
-
             <LinearGradient
               colors={[
                 "rgba(255,255,255,0.08)",
@@ -133,7 +131,6 @@ export default function AdvicesScreen() {
               ]}
               style={styles.cardGradient}
             >
-
               <Text style={styles.cardTitle}>
                 {section.title}
               </Text>
@@ -141,10 +138,8 @@ export default function AdvicesScreen() {
               <Text style={styles.cardSubtitle}>
                 {section.subtitle}
               </Text>
-
             </LinearGradient>
-
-          </TouchableOpacity>
+          </Pressable>
         ))}
       </View>
 
@@ -155,9 +150,7 @@ export default function AdvicesScreen() {
         animationType="fade"
       >
         <View style={styles.modalOverlay}>
-
           <View style={styles.modalContent}>
-
             <Text style={styles.modalTitle}>
               {selected?.title}
             </Text>
@@ -181,20 +174,17 @@ export default function AdvicesScreen() {
               ))}
             </ScrollView>
 
-            <TouchableOpacity
+            <Pressable
               style={styles.closeButton}
               onPress={() => setSelected(null)}
             >
               <Text style={styles.closeText}>
                 CLOSE
               </Text>
-            </TouchableOpacity>
-
+            </Pressable>
           </View>
-
         </View>
       </Modal>
-
     </ScrollView>
   );
 }
