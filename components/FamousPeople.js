@@ -5,6 +5,7 @@ import {
   Text,
   StyleSheet,
   Image,
+  FlatList,
 } from "react-native";
 
 import famousPeople from "../data/famousPeople";
@@ -15,33 +16,37 @@ import typography from "../styles/Typography";
 import SectionTitle from "./SectionTitle";
 
 export default function FamousPeople() {
+  const renderPerson = ({ item }) => (
+    <View style={styles.card}>
+      <Image
+        source={item.image}
+        style={styles.image}
+      />
+
+      <View style={styles.info}>
+        <Text style={styles.name}>
+          {item.name}
+        </Text>
+
+        <Text style={styles.description}>
+          {item.description}
+        </Text>
+      </View>
+    </View>
+  );
+
   return (
     <View style={styles.container}>
       <SectionTitle title="FAMOUS PEOPLE" />
 
-      <View style={styles.grid}>
-        {famousPeople.map((person) => (
-          <View
-            key={person.id}
-            style={styles.card}
-          >
-            <Image
-              source={person.image}
-              style={styles.image}
-            />
-
-            <View style={styles.info}>
-              <Text style={styles.name}>
-                {person.name}
-              </Text>
-
-              <Text style={styles.description}>
-                {person.description}
-              </Text>
-            </View>
-          </View>
-        ))}
-      </View>
+      <FlatList
+        data={famousPeople}
+        renderItem={renderPerson}
+        keyExtractor={(item) => item.id.toString()}
+        numColumns={2}
+        columnWrapperStyle={styles.grid}
+        scrollEnabled={false}
+      />
     </View>
   );
 }
@@ -53,8 +58,6 @@ const styles = StyleSheet.create({
   },
 
   grid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
     justifyContent: "space-between",
   },
 
